@@ -2,20 +2,16 @@ import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
  
 const api = new WooCommerceRestApi({
 
-    url: "http://localhost/flymoney",
-    consumerKey: "ck_4c9f7b0223c229373444322b095bae02b86fb3b8",
-    consumerSecret: "cs_83b1e85684a30cd64208bf4eb1d494cdeac173ca",
-
-    /*url: "https://flymoney.biz",
-    consumerKey: "ck_8f6169b4b741dc5fedc77ccd3c7c1869bd77b2da",
-    consumerSecret: "cs_e98d434a18dcef98fa1d6c046a7ad619d9273806",*/
+    url: "your_web_site_url",
+    consumerKey: "ck_your_cunsumer_key",
+    consumerSecret: "cs_your_consumer_secret",
 
     version: "wc/v3",
-    queryStringAuth: true,  // чтобы работал post
+    queryStringAuth: true,
     axiosConfig: {
         headers: {
-            'X-Requested-With': 'XMLHttpRequest',  // чтобы работал get/post
-            'Content-Type': 'application/json',  // чтобы работал post
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json',
         }
     }
   
