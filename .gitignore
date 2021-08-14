@@ -13,6 +13,10 @@ js/
 # mobile
 mobile/
 
+# api
+app/src/api/products.js
+admin-order-page-app/src/api/orders.js
+
 # misc
 .DS_Store
 .env.local

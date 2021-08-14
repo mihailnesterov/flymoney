@@ -481,6 +481,27 @@ const Order = (props) => {
                                             )}
                                         </Timer>
                                     </OrderTimer>
+
+                                    <PayButton 
+                                        onClick={() => {
+                                            setLoaderOpen();
+                                            updateOrder(orderCreated.id, {status: 'processing'})
+                                                .then(res => {
+                                                    console.log('Order Status Updated:', res.data);
+                                                    setIsOrderPaid(true);
+                                                })
+                                                .catch(error => {
+                                                    console.log("Order Status Update error:", error.res.data);
+                                                })
+                                                .finally(() => {
+                                                    setLoaderClose();
+                                                });
+                                            }
+                                        }
+                                    >
+                                        &#129689; Я оплатил(а)
+                                    </PayButton>
+
                                 </div>
                             }
                             
@@ -876,37 +897,11 @@ const Order = (props) => {
                     visible={isOrderSent}
                     sent
                 >
-                    {
-                        isOrderPaid &&
-                        <OrderButton 
-                            onClick={() => setModalClose()}
-                        >
-                            &#10540; Закрыть
-                        </OrderButton>
-                    }
-                    {
-                        !isOrderPaid &&
-                        <PayButton 
-                            onClick={() => {
-                                setLoaderOpen();
-                                updateOrder(orderCreated.id, {status: 'processing'})
-                                    .then(res => {
-                                        console.log('Order Status Updated:', res.data);
-                                        setIsOrderPaid(true);
-                                    })
-                                    .catch(error => {
-                                        console.log("Order Status Update error:", error.res.data);
-                                    })
-                                    .finally(() => {
-                                        setLoaderClose();
-                                    });
-                                }
-                            }
-                        >
-                            &#129689; Я оплатил(а)
-                        </PayButton>
-                    }
-                    
+                    <OrderButton 
+                        onClick={() => setModalClose()}
+                    >
+                        &#10540; Закрыть
+                    </OrderButton>
 
                 </ButtonsBlock>
             </Content>
