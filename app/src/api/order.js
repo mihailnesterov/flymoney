@@ -97,7 +97,7 @@ export const getMinSumForSend = (valuteSend) => {
     let minSum = 50;
     switch (valuteSend) {
         case 'RUB':
-            minSum = 100;
+            minSum = 500;
             break;
         case 'UAH':
             minSum = 200;
