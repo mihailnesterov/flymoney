@@ -452,7 +452,7 @@ const Order = (props) => {
                     }
                 </h3>
                 <div>
-                    <small>ВНИМАНИЕ! Обработка заявки от 5 минут до 2 часов рабочего времени сервиса. Услуга Visa/Master TRY работает только в рабочие часы Турции!</small>
+                    <small>ВНИМАНИЕ! Обработка заявки от 5 минут до 2 часов рабочего времени сервиса. Услуга VISA/Master TRY доступна только в рабочие часы турецких банков с 09:00 до 16:00 по будням!</small>
                 </div>
             </Header>
             <Content>
@@ -613,20 +613,23 @@ const Order = (props) => {
                             autoComplete="off"
                             onChange={
                                 (e) => {
+                                    let sendSumValue = 0;
+                                    e.target.value !== '' && (sendSumValue = e.target.value);
+                                    
                                     document.getElementById("input-order-receive").value = toFloat( calcAmountReceive( 
-                                        e.target.value,
+                                        sendSumValue,
                                         exchangeRate, 
                                         tax,
                                         discount
                                     ));
-                                    document.getElementById("input-send").value = toFloat( e.target.value );
+                                    document.getElementById("input-send").value = toFloat( sendSumValue );
                                     document.getElementById("input-receive").value = toFloat( calcAmountReceive( 
-                                        e.target.value,
+                                        sendSumValue,
                                         exchangeRate, 
                                         tax,
                                         discount
                                     ));
-                                    setAmountSendSuccess( toFloat(e.target.value) );
+                                    setAmountSendSuccess( toFloat(sendSumValue) );
                                 }
                             }
                             style={{
@@ -703,21 +706,23 @@ const Order = (props) => {
                             placeholder="Сумма к получению"
                             autoComplete="off"
                             onChange={(e) => {
+                                    let receiveSumValue = 0;
+                                    e.target.value !== '' && (receiveSumValue = e.target.value);
                                     document.getElementById("input-order-send").value = toFloat( calcAmountSend( 
-                                        e.target.value,
+                                        receiveSumValue,
                                         exchangeRate, 
                                         tax,
                                         discount
                                     ));
-                                    document.getElementById("input-receive").value = toFloat( e.target.value );
+                                    document.getElementById("input-receive").value = toFloat( receiveSumValue );
                                     document.getElementById("input-send").value = toFloat( calcAmountSend( 
-                                        e.target.value,
+                                        receiveSumValue,
                                         exchangeRate, 
                                         tax,
                                         discount
                                     ));
 
-                                    setAmountReceiveSuccess( toFloat(e.target.value) );
+                                    setAmountReceiveSuccess( toFloat(receiveSumValue) );
                                 }
                             }
                             style={{

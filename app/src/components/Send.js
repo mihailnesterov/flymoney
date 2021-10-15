@@ -113,15 +113,16 @@ const Send = (props) => {
                     placeholder="Сумма к выдаче"
                     defaultValue={amountSend > 0 ? amountSend : '0.00'}
                     onChange={(e) => {
-                            
+                        let sendSumValue = 0;
+                        e.target.value !== '' && (sendSumValue = e.target.value);
                         document.getElementById("input-receive").value = toFloat( calcAmountReceive( 
-                            e.target.value,
+                            sendSumValue,
                             exchangeRate,
                             tax,
                             discount
                         ));
                             
-                        setAmountSendSuccess( e.target.value );
+                        setAmountSendSuccess( sendSumValue );
                     }}
                     style={{
                         "width":"100%",

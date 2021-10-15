@@ -196,15 +196,16 @@ const Receive = (props) => {
                 placeholder="Сумма к получению"
                 defaultValue={ amountReceive > 0 ? amountReceive : '0.00' }
                 onChange={(e) => {
-
+                        let receiveSumValue = 0;
+                        e.target.value !== '' && (receiveSumValue = e.target.value);
                         document.getElementById("input-send").value = toFloat( calcAmountSend( 
-                            e.target.value,
+                            receiveSumValue,
                             valute.exchange_rate, 
                             selectedBankTax,
                             discount
                         ));
 
-                        setAmountReceiveSuccess( e.target.value );
+                        setAmountReceiveSuccess( receiveSumValue );
                         setExchangeRateSuccess( valute.exchange_rate );
                         setTaxSuccess( selectedBankTax );
                     
